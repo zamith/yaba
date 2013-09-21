@@ -1,6 +1,6 @@
-require 'obvious'
+require 'values/post'
 
-class Post < Obvious::Entity
-  value :id, Fixnum
-  value :body, String
+module Entities
+  class Post
+  end
 end
