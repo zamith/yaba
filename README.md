@@ -7,7 +7,7 @@ it's own branch, so you can move around and take a look.
 
 Approaches
 ----------
-* obvious - a test case of the [obvious framework](https://github.com/RetroMocha/obvious)
-* clean-slate - built from the ground up inspired by the blog posts and talks
+* [obvious](https://github.com/zamith/yaba/tree/obvious) - a test case of the [obvious framework](https://github.com/RetroMocha/obvious)
+* [clean-slate](https://github.com/zamith/yaba/tree/clean-slate) - built from the ground up inspired by the blog posts and talks
 from Uncle Bob Martin, Matt Wynne, Corey Haines, Victor Savkin, Alistair
 Cockburn and many others.
