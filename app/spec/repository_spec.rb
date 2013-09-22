@@ -1,7 +1,8 @@
+require 'fixtures/initialized_repository'
 require 'repository'
 
 describe Repository do
-  let(:post_repo) { double }
+  let(:post_repo) { Repository.for(:post) }
 
   context ".register" do
     it "allows new repositories to be registered" do

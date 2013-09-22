@@ -5,9 +5,20 @@ describe "PostsRepository" do
   let(:repo) { Repository.for(:post) }
   let(:valid_post) { Values::Post.new }
 
+  after :each do
+    repo.clear
+  end
+
   context "#save" do
     it "saves a post" do
       expect(repo.save(valid_post)).to be_true
+    end
+
+    it "can save more than one post" do
+      repo.save valid_post
+      repo.save valid_post
+
+      expect(repo.find_by_id(2)).to_not be_nil
     end
   end
 
@@ -17,6 +28,16 @@ describe "PostsRepository" do
       repo.save valid_post
 
       expect(repo.find_by_id(first_id)).to eq(valid_post)
+    end
+  end
+
+  context "#first" do
+    it "gets the first post" do
+      first = Values::Post.new body: "first one"
+      repo.save first
+      repo.save Values::Post.new body: "second one"
+
+      expect(repo.first).to eq first
     end
   end
 end
