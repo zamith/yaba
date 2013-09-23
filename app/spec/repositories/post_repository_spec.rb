@@ -3,7 +3,7 @@ require 'entities/post'
 
 describe "PostsRepository" do
   let(:repo) { Repository.for(:post) }
-  let(:valid_post) { Values::Post.new }
+  let(:valid_post) { Entities::Post.new }
 
   after :each do
     repo.clear
@@ -33,9 +33,9 @@ describe "PostsRepository" do
 
   context "#first" do
     it "gets the first post" do
-      first = Values::Post.new body: "first one"
+      first = Entities::Post.new body: "first one"
       repo.save first
-      repo.save Values::Post.new body: "second one"
+      repo.save Entities::Post.new body: "second one"
 
       expect(repo.first).to eq first
     end

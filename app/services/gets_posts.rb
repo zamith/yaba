@@ -5,11 +5,11 @@ module Services
     end
 
     def get(post_id: 0)
-      repo.find_by_id(post_id).value
+      Values::BlogPost.new(post: repo.find_by_id(post_id)).value
     end
 
     def first
-      repo.first.value
+      Values::BlogPost.new(post: repo.first).value
     end
 
     private

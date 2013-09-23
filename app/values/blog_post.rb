@@ -1,11 +1,11 @@
 require 'json'
 
 module Values
-  class Post
+  class BlogPost
     attr_reader :body
 
-    def initialize(body: "")
-      @body = body
+    def initialize(post: post)
+      @body = post.body
       freeze
     end
 
