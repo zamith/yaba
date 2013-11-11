@@ -40,4 +40,15 @@ describe "PostsRepository" do
       expect(repo.first).to eq first
     end
   end
+
+  context "#all" do
+    it "gets all the posts" do
+      first = Entities::Post.new body: "first one"
+      second = Entities::Post.new body: "second one"
+      repo.save first
+      repo.save second
+
+      expect(repo.all).to eq [first, second]
+    end
+  end
 end
