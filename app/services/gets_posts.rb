@@ -1,3 +1,5 @@
+require 'entities/post'
+
 module Services
   class GetsPosts
     def initialize
@@ -5,11 +7,11 @@ module Services
     end
 
     def get(post_id: 0)
-      Values::BlogPost.new(post: repo.find_by_id(post_id)).value
+      Entities::Post.new(repo.find_by_id(post_id).value)
     end
 
     def first
-      Values::BlogPost.new(post: repo.first).value
+      Entities::Post.new(repo.first.value)
     end
 
     private
