@@ -14,6 +14,12 @@ module Services
       Entities::Post.new(repo.first.value)
     end
 
+    def all
+      repo.all do |post|
+        Entities::Post.new(post.value)
+      end
+    end
+
     private
     attr_reader :repo
   end

@@ -12,11 +12,21 @@ describe Services::GetsPosts do
 
   context "#first" do
     it "gets the first post" do
-      post_body = "A nice post"
-      repo.save Entities::Post.new body: post_body
-      post = Services::GetsPosts.new.first
+      post = Entities::Post.new body: "A nice post"
+      repo.save post
 
-      expect(post.body).to eq post_body
+      expect(Services::GetsPosts.new.first.value).to eq post.value
+    end
+  end
+
+  context "#all" do
+    it "gets all the posts" do
+      first = Entities::Post.new body: "first one"
+      second = Entities::Post.new body: "second one"
+      repo.save first
+      repo.save second
+
+      expect(Services::GetsPosts.new.all.map(&:value)).to eq [first.value, second.value]
     end
   end
 end
