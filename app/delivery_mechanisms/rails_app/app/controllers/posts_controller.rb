@@ -1,10 +1,12 @@
+require "#{APP_ROOT}/services/gets_posts"
+
 class PostsController < ApplicationController
   def index
     @posts = repo.all
   end
 
   def show
-    @post = repo.find_by_id(params[:id])
+    @post = Services::GetsPosts.get(params[:id])
   end
 
   private

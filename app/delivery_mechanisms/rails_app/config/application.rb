@@ -22,6 +22,7 @@ module RailsApp
   end
 end
 
+require_relative '../../../../config'
 require_relative '../../../repository'
 require_relative '../../../repositories/posts/active_record'
 
