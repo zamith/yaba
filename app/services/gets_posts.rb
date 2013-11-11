@@ -1,4 +1,4 @@
-require 'entities/post'
+require "#{APP_ROOT}/entities/post"
 
 module Services
   class GetsPosts

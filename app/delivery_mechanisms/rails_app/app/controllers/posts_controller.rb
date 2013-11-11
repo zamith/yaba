@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Services::GetsPosts.get(params[:id])
+    @post = Services::GetsPosts.new.get(post_id: params[:id])
   end
 
   private

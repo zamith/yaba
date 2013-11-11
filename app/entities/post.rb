@@ -1,12 +1,11 @@
-require 'json'
-require 'serializers/pipeline'
+require "#{APP_ROOT}/serializers/pipeline"
 
 module Entities
   class Post
     attr_reader :body
 
-    def initialize(body: "")
-      @body = body
+    def initialize(args = {})
+      @body = args[:body] || args.fetch("body", "")
       freeze
     end
 

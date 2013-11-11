@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'entities/post'
 
 describe Entities::Post do

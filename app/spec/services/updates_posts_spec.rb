@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'services/updates_posts'
 
 describe Services::UpdatesPosts do
