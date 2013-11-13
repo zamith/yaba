@@ -14,4 +14,7 @@ Running
 
 YABA can be run with different delivery mechanisms:
 
-Right now it can't be run in any
+* Rails
+
+        cd delivery_mechanisms/rails_app
+        bundle exec rails server
