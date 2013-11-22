@@ -1,3 +1,4 @@
+require "#{APP_ROOT}/repository"
 require "#{APP_ROOT}/entities/post"
 
 module Services

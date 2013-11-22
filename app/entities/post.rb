@@ -2,9 +2,10 @@ require "#{APP_ROOT}/serializers/pipeline"
 
 module Entities
   class Post
-    attr_reader :body
+    attr_reader :id, :body
 
     def initialize(args = {})
+      @id = args[:id] || args.fetch("id", 0)
       @body = args[:body] || args.fetch("body", "")
       freeze
     end

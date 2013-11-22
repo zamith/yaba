@@ -1,0 +1,5 @@
+= form_tag :post, method: :patch do
+  = label_tag :body
+  = text_field_tag :body, @post.body, name: "post[body]"
+
+  = submit_tag

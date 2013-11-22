@@ -9,6 +9,11 @@ module Repositories
         post.id + 1
       end
 
+      def update(post)
+        old_post = Post.find(post.id)
+        old_post.update post.value
+      end
+
       def all
         Post.all
       end

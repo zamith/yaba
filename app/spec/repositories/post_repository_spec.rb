@@ -23,6 +23,12 @@ describe "PostsRepository" do
     end
   end
 
+  context "#update" do
+    it "updates a post" do
+      expect(repo.update(valid_post)).to be_true
+    end
+  end
+
   context "#find_by_id" do
     it "finds a saved post by id" do
       first_id = 1
