@@ -1,7 +1,7 @@
-yaba
-====
+yaba  [![Build Status](https://travis-ci.org/zamith/yaba.png)](https://travis-ci.org/zamith/yaba)
+================
 
-YABA (Yet Another Blog Application) written with from scratch, and following an
+YABA (Yet Another Blog Application) written from scratch, and following an
 hexagonal arch approach.
 
 It has entities which are the core of the app, repositories which work as
