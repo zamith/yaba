@@ -1,4 +1,4 @@
-script: rspec app/spec
+script: bundle exec rspec app/spec
 gemfile:
   - Gemfile
 language: ruby
