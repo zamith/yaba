@@ -1,0 +1,10 @@
+script: rspec app/spec
+gemfile:
+  - Gemfile
+language: ruby
+rvm:
+  - 2.0.0
+  - ruby-head
+matrix:
+  allow_failures:
+    - rvm: ruby-head
