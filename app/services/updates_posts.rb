@@ -1,16 +1,16 @@
-require "#{APP_ROOT}/repository"
 require "#{APP_ROOT}/entities/post"
 
 module Services
   class UpdatesPosts
+    include Wisper::Publisher
+
     def initialize(post: post)
       @post = post
-      @repo = Repository.for(:post)
     end
 
     def apply_changes(changes = {})
       new_post = Entities::Post.new post.value.merge(format(changes))
-      repo.update new_post
+      publish(:updated_post, new_post)
       new_post
     end
 
