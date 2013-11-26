@@ -16,7 +16,7 @@ class PostsController < ApplicationController
 
   def update
     post = Services::GetsPosts.new.get(post_id: params[:id])
-    changed_post = Services::UpdatesPosts.new(post: post).apply_changes(post_params)
+    Services::UpdatesPosts.new(post: post).apply_changes(post_params)
 
     redirect_to posts_path
   end

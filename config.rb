@@ -16,8 +16,8 @@ class Core
   end
 
   def self.post_config
-    require "#{APP_ROOT}/listeners"
     load_repo
+    require "#{APP_ROOT}/listeners"
   end
 
   def self.load_repo

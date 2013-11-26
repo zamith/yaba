@@ -1,4 +1,5 @@
 require "#{APP_ROOT}/entities/post"
+require 'wisper'
 
 module Services
   class UpdatesPosts
