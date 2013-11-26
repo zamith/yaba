@@ -23,7 +23,7 @@ module RailsApp
 end
 
 require_relative '../../../config'
-require "#{APP_ROOT}/repository"
-require "#{APP_ROOT}/repositories/posts/active_record"
+Core.configure do |config|
+  config.repository = :active_record
+end
 
-Repository.register :post, Repositories::Posts::ActiveRecord.new

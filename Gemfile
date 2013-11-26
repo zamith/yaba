@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'whisper'
+gem 'wisper'
 
 group :development do
   gem 'pry'

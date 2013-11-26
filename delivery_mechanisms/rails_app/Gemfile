@@ -1,5 +1,12 @@
 source 'https://rubygems.org'
 
+group :master do
+  file = '../../Gemfile'
+  if File.exists?(file)
+    eval File.read(file), binding
+  end
+end
+
 gem 'rails', '~> 4.0.1'
 gem 'jbuilder', '~> 1.2'
 

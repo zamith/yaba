@@ -1,5 +1,3 @@
-require "#{APP_ROOT}/repository"
-
 module Services
   class SavesPosts
     def initialize
@@ -15,4 +13,3 @@ module Services
   end
 end
 
-Wisper.add_listener Services::SavesPosts.new
