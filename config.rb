@@ -1,7 +1,8 @@
 ROOT = File.dirname(__FILE__)
 APP_ROOT = ROOT.concat("/app")
 
-Bundler.require(:master)
+Bundler.require(:master) unless defined?(CORE_TEST) && CORE_TEST
+
 require "#{APP_ROOT}/repository"
 
 class Core
@@ -17,7 +18,7 @@ class Core
 
   def self.post_config
     load_repo
-    require "#{APP_ROOT}/listeners"
+    require "#{APP_ROOT}/listeners_config"
   end
 
   def self.load_repo

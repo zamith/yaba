@@ -1,5 +1,5 @@
-module Services
-  class SavesPosts
+module Listeners
+  class PostsPersistence
     def initialize
       @repo = Repository.for(:post)
     end

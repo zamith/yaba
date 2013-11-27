@@ -1,9 +1,9 @@
 require 'spec_helper'
 require 'entities/post'
-require 'services/saves_posts'
+require 'listeners/posts_persistence'
 require 'fixtures/initialized_repository'
 
-describe Services::SavesPosts do
+describe Listeners::PostsPersistence do
   let(:repo) { Repository.for(:post) }
 
   after :each do
@@ -16,7 +16,7 @@ describe Services::SavesPosts do
 
       repo.should_receive(:update).with(changed_post)
 
-      Services::SavesPosts.new.updated_post(changed_post)
+      Listeners::PostsPersistence.new.updated_post(changed_post)
     end
   end
 end
