@@ -5,7 +5,9 @@ module Repositories
   module Posts
     class ActiveRecord
       def save(post)
-        post = Post.create(post.value)
+        post_value = post.value
+        post_value.delete :id
+        post = Post.create(post_value)
         post.id + 1
       end
 

@@ -19,4 +19,14 @@ describe Listeners::PostsPersistence do
       Listeners::PostsPersistence.new.updated_post(changed_post)
     end
   end
+
+  context "#created_post" do
+    it "saves the newly created post" do
+      new_post = Entities::Post.new body: "random text"
+
+      repo.should_receive(:save).with(new_post)
+
+      Listeners::PostsPersistence.new.created_post(new_post)
+    end
+  end
 end

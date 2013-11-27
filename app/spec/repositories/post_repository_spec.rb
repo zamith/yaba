@@ -19,7 +19,7 @@ describe "PostsRepository" do
       repo.save valid_post
       repo.save valid_post
 
-      expect(repo.find_by_id(2)).to_not be_nil
+      expect(repo.all.size).to eq 2
     end
   end
 

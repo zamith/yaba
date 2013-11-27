@@ -1,4 +1,5 @@
 require "#{APP_ROOT}/services/gets_posts"
+require "#{APP_ROOT}/services/creates_posts"
 require "#{APP_ROOT}/services/updates_posts"
 
 class PostsController < ApplicationController
@@ -8,6 +9,16 @@ class PostsController < ApplicationController
 
   def show
     @post = PostDecorator.decorate(Services::GetsPosts.new.get(post_id: params[:id]))
+  end
+
+  def new
+    @post = PostDecorator.decorate(Entities::Post.new)
+  end
+
+  def create
+    Services::CreatesPosts.new(post_params: post_params).create
+
+    redirect_to posts_path
   end
 
   def edit
