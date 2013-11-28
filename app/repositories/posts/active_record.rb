@@ -35,7 +35,7 @@ module Repositories
       end
 
       def clear
-        Post.all.map(:destroy)
+        Post.all.map(&:destroy)
       end
 
       class Post < ::ActiveRecord::Base
