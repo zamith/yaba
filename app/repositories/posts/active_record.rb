@@ -7,7 +7,7 @@ module Repositories
       def save(post)
         post_value = post.value
         post_value.delete :id
-        Post.create(post_value)
+        Entities::Post.new Post.create(post_value).value
       end
 
       def update(post)
