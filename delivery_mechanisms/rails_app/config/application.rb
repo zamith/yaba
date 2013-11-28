@@ -25,6 +25,5 @@ end
 require_relative '../../../config'
 Core.configure do |config|
   config.repository = :active_record
-  config.repository.posts = :memory
 end
 

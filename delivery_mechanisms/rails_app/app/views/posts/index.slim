@@ -7,3 +7,4 @@ table
     tr
       td = link_to post.body, post_path(post.id)
       td = link_to "Edit", edit_post_path(post.id)
+      td = link_to "Delete", post_path(post.id), method: :delete

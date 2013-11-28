@@ -23,6 +23,24 @@ describe "PostsRepository" do
     end
   end
 
+  context "#delete" do
+    it "deletes a post from its id" do
+      post = repo.save valid_post
+
+      repo.delete post.id
+
+      expect{ repo.find_by_id(post.id) }.to raise_error RecordNotFound
+    end
+
+    it "deletes a post from its id even when the id is a string" do
+      post = repo.save valid_post
+
+      repo.delete post.id.to_s
+
+      expect{ repo.find_by_id(post.id) }.to raise_error RecordNotFound
+    end
+  end
+
   context "#update" do
     it "updates a post" do
       expect(repo.update(valid_post)).to be_true
@@ -35,6 +53,10 @@ describe "PostsRepository" do
       repo.save valid_post
 
       expect(repo.find_by_id(first_id)).to eq(valid_post)
+    end
+
+    it "raise an exception if the post is not there" do
+      expect{ repo.find_by_id(1) }.to raise_error RecordNotFound
     end
   end
 
@@ -50,10 +72,8 @@ describe "PostsRepository" do
 
   context "#all" do
     it "gets all the posts" do
-      first = Entities::Post.new body: "first one"
-      second = Entities::Post.new body: "second one"
-      repo.save first
-      repo.save second
+      first = repo.save Entities::Post.new body: "first one"
+      second = repo.save Entities::Post.new body: "second one"
 
       expect(repo.all).to eq [first, second]
     end

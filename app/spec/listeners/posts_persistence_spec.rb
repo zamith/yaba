@@ -5,6 +5,7 @@ require 'fixtures/initialized_repository'
 
 describe Listeners::PostsPersistence do
   let(:repo) { Repository.for(:post) }
+  let(:listener) { Listeners::PostsPersistence.new }
 
   after :each do
     repo.clear
@@ -16,7 +17,7 @@ describe Listeners::PostsPersistence do
 
       repo.should_receive(:update).with(changed_post)
 
-      Listeners::PostsPersistence.new.updated_post(changed_post)
+      listener.updated_post(changed_post)
     end
   end
 
@@ -26,7 +27,17 @@ describe Listeners::PostsPersistence do
 
       repo.should_receive(:save).with(new_post)
 
-      Listeners::PostsPersistence.new.created_post(new_post)
+      listener.created_post(new_post)
+    end
+  end
+
+  context "#deleted_post" do
+    it "deletes the post" do
+      post_id = 1
+
+      repo.should_receive(:delete).with(post_id)
+
+      listener.deleted_post(post_id)
     end
   end
 end

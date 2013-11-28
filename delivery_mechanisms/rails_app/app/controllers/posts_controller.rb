@@ -1,6 +1,8 @@
+require 'draper'
 require "#{APP_ROOT}/services/gets_posts"
 require "#{APP_ROOT}/services/creates_posts"
 require "#{APP_ROOT}/services/updates_posts"
+require "#{APP_ROOT}/services/deletes_posts"
 
 class PostsController < ApplicationController
   def index
@@ -28,6 +30,12 @@ class PostsController < ApplicationController
   def update
     post = Services::GetsPosts.new.get(post_id: params[:id])
     Services::UpdatesPosts.new(post: post).apply_changes(post_params)
+
+    redirect_to posts_path
+  end
+
+  def destroy
+    Services::DeletesPosts.new(post_id: params[:id]).delete
 
     redirect_to posts_path
   end

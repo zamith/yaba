@@ -7,8 +7,7 @@ module Repositories
       def save(post)
         post_value = post.value
         post_value.delete :id
-        post = Post.create(post_value)
-        post.id + 1
+        Post.create(post_value)
       end
 
       def update(post)
@@ -16,26 +15,33 @@ module Repositories
         old_post.update post.value
       end
 
+      def delete(post_id)
+        existing_post = Post.find(post_id)
+        existing_post.destroy
+      end
+
       def all
-        Post.all
+        Post.all.map do |post|
+          Entities::Post.new post.value
+        end
       end
 
       def find_by_id(post_id)
-        Post.find(post_id)
+        Entities::Post.new Post.find(post_id).value
       end
 
       def first
-        Post.first
+        Entities::Post.new Post.first.value
       end
 
       def clear
         Post.all.map(:destroy)
       end
-    end
 
-    class Post < ::ActiveRecord::Base
-      def value(serializer: Serializers::Pipeline)
-        serializer.new(self).serialize(attrs_method: :attributes)
+      class Post < ::ActiveRecord::Base
+        def value(serializer: Serializers::Pipeline)
+          serializer.new(self).serialize(attrs_method: :attributes)
+        end
       end
     end
   end

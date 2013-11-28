@@ -5,9 +5,13 @@ module Entities
     attr_reader :id, :body
 
     def initialize(args = {})
-      @id = args[:id] || args.fetch("id", 0)
+      @id = args[:id] || args.fetch("id", 1)
       @body = args[:body] || args.fetch("body", "")
       freeze
+    end
+
+    def ==(other)
+      self.value == other.value
     end
 
     def value(serializer: Serializers::Pipeline)

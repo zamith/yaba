@@ -12,6 +12,10 @@ module Listeners
       repo.save post
     end
 
+    def deleted_post(post_id)
+      repo.delete post_id
+    end
+
     private
     attr_reader :repo
   end
