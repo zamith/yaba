@@ -9,7 +9,7 @@ module Services
 
     def apply_changes(changes = {})
       changed_post = Entities::Post.new post.value.merge(format(changes))
-      Persistence::Posts.new.update(changed_post)
+      Persistence::Posts.new.update(changed_post) || raise(PersistenceError.new("Could not update the post"))
     end
 
     private

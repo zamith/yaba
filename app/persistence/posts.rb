@@ -1,5 +1,7 @@
 require "#{APP_ROOT}/repository"
 
+class PersistenceError < RuntimeError; end
+
 module Persistence
   class Posts
     def initialize
