@@ -1,6 +1,5 @@
 require 'spec_helper'
 require 'services/creates_posts'
-require 'fixtures/initialized_repository'
 
 describe Services::CreatesPosts do
   let(:repo) { Repository.for(:post) }

@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'fixtures/initialized_repository'
 require 'services/deletes_posts'
 require 'entities/post'
 

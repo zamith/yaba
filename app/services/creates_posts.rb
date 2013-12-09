@@ -1,15 +1,19 @@
 require "#{APP_ROOT}/entities/post"
 require "#{APP_ROOT}/persistence/posts"
+require 'wisper'
 
 module Services
   class CreatesPosts
+    include Wisper::Publisher
+
     def initialize(post_params: {})
       @post_params = post_params
     end
 
     def create
       new_post = Entities::Post.new post_params
-      Persistence::Posts.new.create(new_post)
+      publish(:created_post, new_post)
+      new_post
     end
 
     private

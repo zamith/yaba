@@ -1,22 +1,20 @@
 require "#{APP_ROOT}/repository"
 
-class PersistenceError < RuntimeError; end
-
 module Persistence
   class Posts
     def initialize
       @repo = Repository.for(:post)
     end
 
-    def update(post)
+    def updated_post(post)
       repo.update post
     end
 
-    def create(post)
+    def created_post(post)
       repo.save post
     end
 
-    def delete(post_id)
+    def deleted_post(post_id)
       repo.delete post_id
     end
 

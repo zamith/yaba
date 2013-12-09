@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'fixtures/initialized_repository'
 require 'services/gets_posts'
 
 describe Services::GetsPosts do

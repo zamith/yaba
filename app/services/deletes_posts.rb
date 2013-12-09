@@ -1,14 +1,16 @@
 require "#{APP_ROOT}/persistence/posts"
+require 'wisper'
 
 module Services
   class DeletesPosts
+    include Wisper::Publisher
 
     def initialize(post_id: nil)
       @post_id = post_id
     end
 
     def delete
-      Persistence::Posts.new.delete(post_id)
+      publish(:deleted_post, post_id)
     end
 
     private
