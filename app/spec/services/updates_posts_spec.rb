@@ -1,7 +1,15 @@
 require 'spec_helper'
 require 'services/updates_posts'
+require 'entities/post'
+require 'fixtures/initialized_repository'
 
 describe Services::UpdatesPosts do
+  let(:repo) { Repository.for(:post) }
+
+  after :each do
+    repo.clear
+  end
+
   context "#apply_changes" do
     it "changes the title of a post" do
       post = Entities::Post.new body: "random text"
@@ -21,14 +29,13 @@ describe Services::UpdatesPosts do
       expect(changed_post.body).to eq new_post_body
     end
 
-    it "publishes an event for the updating of the post" do
-      changed_post = Entities::Post.new id: 1, body: "random text"
-      Entities::Post.stub(:new).and_return(changed_post)
-      updater = Services::UpdatesPosts.new(post: changed_post)
+    it "updates the post in the persistence layer" do
+      post = repo.save Entities::Post.new body: "random text"
+      new_post_body = "I'm the new post"
 
-      updater.should_receive(:publish).with(:updated_post, changed_post)
+      changed_post = Services::UpdatesPosts.new(post: post).apply_changes(body: new_post_body)
 
-      updater.apply_changes
+      expect(repo.find_by_id(changed_post.id).body).to eq new_post_body
     end
   end
 end

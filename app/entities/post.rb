@@ -5,7 +5,7 @@ module Entities
     attr_reader :id, :body
 
     def initialize(args = {})
-      @id = args[:id] || args.fetch("id", 1)
+      @id = args[:id] || args["id"]
       @body = args[:body] || args.fetch("body", "")
       freeze
     end

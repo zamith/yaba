@@ -1,7 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'wisper'
-
 group :development do
   gem 'pry'
 end

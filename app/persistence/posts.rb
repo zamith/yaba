@@ -1,18 +1,20 @@
-module Listeners
-  class PostsPersistence
+require "#{APP_ROOT}/repository"
+
+module Persistence
+  class Posts
     def initialize
       @repo = Repository.for(:post)
     end
 
-    def updated_post(post)
+    def update(post)
       repo.update post
     end
 
-    def created_post(post)
+    def create(post)
       repo.save post
     end
 
-    def deleted_post(post_id)
+    def delete(post_id)
       repo.delete post_id
     end
 

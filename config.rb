@@ -22,7 +22,6 @@ class Core
 
   def self.post_config
     @repository_config.load_repos
-    require "#{APP_ROOT}/listeners_config"
   end
 
 end

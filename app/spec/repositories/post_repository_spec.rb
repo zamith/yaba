@@ -50,9 +50,9 @@ describe "PostsRepository" do
   context "#find_by_id" do
     it "finds a saved post by id" do
       first_id = 1
-      repo.save valid_post
+      persisted_valid_post = repo.save valid_post
 
-      expect(repo.find_by_id(first_id)).to eq(valid_post)
+      expect(repo.find_by_id(first_id)).to eq(persisted_valid_post)
     end
 
     it "raise an exception if the post is not there" do
@@ -63,10 +63,10 @@ describe "PostsRepository" do
   context "#first" do
     it "gets the first post" do
       first = Entities::Post.new body: "first one"
-      repo.save first
+      persisted_first_post = repo.save first
       repo.save Entities::Post.new body: "second one"
 
-      expect(repo.first).to eq first
+      expect(repo.first).to eq persisted_first_post
     end
   end
 
