@@ -1,4 +1,7 @@
+= label_tag :title
+= text_field_tag :title, @post.title, name: "post[title]"
+
 = label_tag :body
-= text_field_tag :body, @post.body, name: "post[body]"
+= text_area_tag :body, @post.body, name: "post[body]"
 
 = submit_tag
