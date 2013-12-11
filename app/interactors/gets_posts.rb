@@ -25,7 +25,7 @@ module Interactors
     end
 
     def recent
-      repo.last(no_recent) do |post|
+      repo.last(no_recent).map do |post|
         Entities::Post.new(post.value)
       end
     end
