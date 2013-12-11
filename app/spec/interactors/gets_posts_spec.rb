@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'services/gets_posts'
+require 'interactors/gets_posts'
 
-describe Services::GetsPosts do
+describe Interactors::GetsPosts do
   let(:repo) { Repository.for(:post) }
 
   after :each do
@@ -12,7 +12,7 @@ describe Services::GetsPosts do
     it "gets the first post" do
       post = repo.save Entities::Post.new body: "A nice post"
 
-      expect(Services::GetsPosts.new.first.value).to eq post.value
+      expect(Interactors::GetsPosts.new.first.value).to eq post.value
     end
   end
 
@@ -21,7 +21,7 @@ describe Services::GetsPosts do
       first = repo.save Entities::Post.new body: "first one"
       second = repo.save Entities::Post.new body: "second one"
 
-      expect(Services::GetsPosts.new.all.map(&:value)).to eq [first.value, second.value]
+      expect(Interactors::GetsPosts.new.all.map(&:value)).to eq [first.value, second.value]
     end
   end
 end

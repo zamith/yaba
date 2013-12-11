@@ -1,7 +1,7 @@
 require "#{APP_ROOT}/persistence/posts"
 require 'wisper'
 
-module Services
+module Interactors
   class DeletesPosts
     include Wisper::Publisher
 

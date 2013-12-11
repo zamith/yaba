@@ -2,7 +2,7 @@ require "#{APP_ROOT}/entities/post"
 require "#{APP_ROOT}/persistence/posts"
 require 'wisper'
 
-module Services
+module Interactors
   class CreatesPosts
     include Wisper::Publisher
 

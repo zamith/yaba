@@ -1,8 +1,8 @@
 require 'spec_helper'
-require 'services/updates_posts'
+require 'interactors/updates_posts'
 require 'entities/post'
 
-describe Services::UpdatesPosts do
+describe Interactors::UpdatesPosts do
   let(:repo) { Repository.for(:post) }
 
   after :each do
@@ -14,7 +14,7 @@ describe Services::UpdatesPosts do
       post = Entities::Post.new body: "random text"
       new_post_body = "I'm the new post"
 
-      changed_post = Services::UpdatesPosts.new(post: post).apply_changes(body: new_post_body)
+      changed_post = Interactors::UpdatesPosts.new(post: post).apply_changes(body: new_post_body)
 
       expect(changed_post.body).to eq new_post_body
     end
@@ -23,7 +23,7 @@ describe Services::UpdatesPosts do
       post = Entities::Post.new body: "random text"
       new_post_body = "I'm the new post"
 
-      changed_post = Services::UpdatesPosts.new(post: post).apply_changes("body" => new_post_body)
+      changed_post = Interactors::UpdatesPosts.new(post: post).apply_changes("body" => new_post_body)
 
       expect(changed_post.body).to eq new_post_body
     end
@@ -32,7 +32,7 @@ describe Services::UpdatesPosts do
       post = repo.save Entities::Post.new body: "random text"
       new_post_body = "I'm the new post"
 
-      changed_post = Services::UpdatesPosts.new(post: post).apply_changes(body: new_post_body)
+      changed_post = Interactors::UpdatesPosts.new(post: post).apply_changes(body: new_post_body)
 
       expect(repo.find_by_id(post.id).body).to eq new_post_body
     end

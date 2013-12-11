@@ -1,7 +1,7 @@
 require "#{APP_ROOT}/repository"
 require "#{APP_ROOT}/entities/post"
 
-module Services
+module Interactors
   class GetsPosts
     def initialize
       @repo = Repository.for(:post)

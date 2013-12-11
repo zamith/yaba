@@ -1,8 +1,8 @@
 require 'spec_helper'
-require 'services/deletes_posts'
+require 'interactors/deletes_posts'
 require 'entities/post'
 
-describe Services::DeletesPosts do
+describe Interactors::DeletesPosts do
   let(:repo) { Repository.for(:post) }
 
   after :each do
@@ -12,7 +12,7 @@ describe Services::DeletesPosts do
   context "#delete" do
     it "deletes a post" do
       post = repo.save Entities::Post.new body: "great post"
-      deleter = Services::DeletesPosts.new(post_id: post.id)
+      deleter = Interactors::DeletesPosts.new(post_id: post.id)
 
       deleter.delete
 

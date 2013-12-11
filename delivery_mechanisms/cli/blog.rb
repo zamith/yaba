@@ -23,15 +23,15 @@ Core.configure do |config|
     config.repository.posts = :mongoid
   end
 end
-require "#{APP_ROOT}/services/gets_posts"
-require "#{APP_ROOT}/services/creates_posts"
+require "#{APP_ROOT}/interactors/gets_posts"
+require "#{APP_ROOT}/interactors/creates_posts"
 
 command :get do |c|
   c.action do |args, options|
     entity = args[0]
     id = args[1]
     if entity == 'post'
-      post = Services::GetsPosts.new.get(post_id: id)
+      post = Interactors::GetsPosts.new.get(post_id: id)
       puts "Post number #{post.id}"
       puts post.body
     end
@@ -42,7 +42,7 @@ command :create do |c|
   c.action do |args, options|
     entity = args.shift
     if entity == 'post'
-      Services::CreatesPosts.new(post_params: Hash[*args]).create
+      Interactors::CreatesPosts.new(post_params: Hash[*args]).create
     end
   end
 end

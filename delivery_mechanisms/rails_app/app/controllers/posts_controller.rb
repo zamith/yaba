@@ -1,16 +1,16 @@
 require 'draper'
-require "#{APP_ROOT}/services/gets_posts"
-require "#{APP_ROOT}/services/creates_posts"
-require "#{APP_ROOT}/services/updates_posts"
-require "#{APP_ROOT}/services/deletes_posts"
+require "#{APP_ROOT}/interactors/gets_posts"
+require "#{APP_ROOT}/interactors/creates_posts"
+require "#{APP_ROOT}/interactors/updates_posts"
+require "#{APP_ROOT}/interactors/deletes_posts"
 
 class PostsController < ApplicationController
   def index
-    @posts = PostDecorator.decorate_collection(Services::GetsPosts.new.all)
+    @posts = PostDecorator.decorate_collection(Interactors::GetsPosts.new.all)
   end
 
   def show
-    @post = PostDecorator.decorate(Services::GetsPosts.new.get(post_id: params[:id]))
+    @post = PostDecorator.decorate(Interactors::GetsPosts.new.get(post_id: params[:id]))
   end
 
   def new
@@ -18,24 +18,24 @@ class PostsController < ApplicationController
   end
 
   def create
-    Services::CreatesPosts.new(post_params: post_params).create
+    Interactors::CreatesPosts.new(post_params: post_params).create
 
     redirect_to posts_path
   end
 
   def edit
-    @post = PostDecorator.decorate(Services::GetsPosts.new.get(post_id: params[:id]))
+    @post = PostDecorator.decorate(Interactors::GetsPosts.new.get(post_id: params[:id]))
   end
 
   def update
-    post = Services::GetsPosts.new.get(post_id: params[:id])
-    Services::UpdatesPosts.new(post: post).apply_changes(post_params)
+    post = Interactors::GetsPosts.new.get(post_id: params[:id])
+    Interactors::UpdatesPosts.new(post: post).apply_changes(post_params)
 
     redirect_to posts_path
   end
 
   def destroy
-    Services::DeletesPosts.new(post_id: params[:id]).delete
+    Interactors::DeletesPosts.new(post_id: params[:id]).delete
 
     redirect_to posts_path
   end

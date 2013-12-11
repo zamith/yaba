@@ -6,7 +6,7 @@ hexagonal arch approach.
 
 It has entities which are the core of the app, repositories which work as
 adapters for the database, value object that represent the actual data of the
-system and are what is passed around, it will also have use cases (or services)
+system and are what is passed around, it will also have use cases (or interactors)
 and a delivery mechanism.
 
 Running
