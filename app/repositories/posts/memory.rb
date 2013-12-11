@@ -39,10 +39,10 @@ module Repositories
 
       def last(no_posts = 1)
         recent_posts = []
-        (1...no_posts).each do |index|
-          recent_posts[@next_id - index]
+        (1..no_posts).each do |index|
+          recent_posts << posts[@next_id - index]
         end
-        recent_posts
+        (recent_posts.size == 1) ? recent_posts[0] : recent_posts
       end
 
       def clear

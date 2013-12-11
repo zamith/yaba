@@ -18,7 +18,7 @@ describe Interactors::GetsPosts do
     first = repo.save Entities::Post.new body: "first one"
     second = repo.save Entities::Post.new body: "second one"
 
-    expect(Interactors::GetsPosts.new.all.map(&:value)).to eq [first.value, second.value]
+    expect(Interactors::GetsPosts.new.all).to eq [first, second]
   end
 
   it "gets the most recent posts" do
@@ -26,6 +26,6 @@ describe Interactors::GetsPosts do
     recent = repo.save Entities::Post.new body: "second one"
     more_recent = repo.save Entities::Post.new body: "third one"
 
-    expect(Interactors::GetsPosts.new(last: 1).recent).to eq [more_recent.value, recent.value]
+    expect(Interactors::GetsPosts.new(no_recent: 2).recent).to eq [more_recent, recent]
   end
 end

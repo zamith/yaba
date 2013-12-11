@@ -89,7 +89,7 @@ describe "PostsRepository" do
       first = repo.save Entities::Post.new body: "first one"
       second = repo.save Entities::Post.new body: "second one"
 
-      expect(repo.last(2)).to eq [first, second]
+      expect(repo.last(2)).to eq  [second, first]
     end
   end
 end

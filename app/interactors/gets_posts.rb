@@ -19,7 +19,7 @@ module Interactors
     end
 
     def all
-      repo.all do |post|
+      repo.all.map do |post|
         Entities::Post.new(post.value)
       end
     end
