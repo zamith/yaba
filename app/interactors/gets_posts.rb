@@ -3,8 +3,11 @@ require "#{APP_ROOT}/entities/post"
 
 module Interactors
   class GetsPosts
-    def initialize
+    NUMBER_OF_RECENT_POSTS = 10
+
+    def initialize(no_recent: NUMBER_OF_RECENT_POSTS)
       @repo = Repository.for(:post)
+      @no_recent = no_recent
     end
 
     def get(post_id: 0)
@@ -21,7 +24,13 @@ module Interactors
       end
     end
 
+    def recent
+      repo.last(no_recent) do |post|
+        Entities::Post.new(post.value)
+      end
+    end
+
     private
-    attr_reader :repo
+    attr_reader :repo, :no_recent
   end
 end

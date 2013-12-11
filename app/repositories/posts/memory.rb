@@ -37,6 +37,14 @@ module Repositories
         posts.first[1]
       end
 
+      def last(no_posts = 1)
+        recent_posts = []
+        (1...no_posts).each do |index|
+          recent_posts[@next_id - index]
+        end
+        recent_posts
+      end
+
       def clear
         @posts = {}
         @next_id = 1

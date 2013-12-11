@@ -77,4 +77,19 @@ describe "PostsRepository" do
       expect(repo.all).to eq [first, second]
     end
   end
+
+  context "#last" do
+    it "gets the last post" do
+      first = repo.save Entities::Post.new body: "first one"
+
+      expect(repo.last).to eq first
+    end
+
+    it "gets the last 2 posts" do
+      first = repo.save Entities::Post.new body: "first one"
+      second = repo.save Entities::Post.new body: "second one"
+
+      expect(repo.last(2)).to eq [first, second]
+    end
+  end
 end
