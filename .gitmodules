@@ -1,3 +1,9 @@
 [submodule "core"]
 	path = core
 	url = git@github.com:zamith/yaba-core.git
+[submodule "delivery_mechanisms/cli"]
+	path = delivery_mechanisms/cli
+	url = git@github.com:zamith/yaba-cli.git
+[submodule "delivery_mechanisms/rails"]
+	path = delivery_mechanisms/rails
+	url = git@github.com:zamith/yaba-rails.git
